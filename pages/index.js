@@ -2,12 +2,22 @@ import Head from "next/head";
 import { Fragment, useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
+import axios from "axios";
+
 import styles from "../styles/index.module.css";
 
 export default function Home() {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [user, setUser] = useState([]);
 
-  const handleInput = (e) => setSearchValue(e.target.value);
+  const handleChange = (e) => setSearchInput(e.target.value);
+
+  const handleClick = async () => {
+    let res = await axios.get(`https://api.github.com/users/${searchInput}`);
+    setUser(res.data);
+  };
+
+  console.log(user);
 
   return (
     <Fragment>
@@ -21,11 +31,15 @@ export default function Home() {
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Enter username here"
-            value={searchValue}
-            onChange={handleInput}
+            value={searchInput}
+            onChange={handleChange}
           />
         </InputGroup>
-        <Button className={styles.searchButton} variant="dark">
+        <Button
+          className={styles.searchButton}
+          variant="dark"
+          onClick={handleClick}
+        >
           Search
         </Button>
       </div>
