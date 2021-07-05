@@ -11,3 +11,8 @@
 .searchButton {
   width: 100%;
 }
+
+.userCard {
+  background-color: aqua;
+  margin-top: 3%;
+}

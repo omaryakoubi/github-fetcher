@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Fragment, useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
+import UserCard from "../components/UserCard";
 
 import axios from "axios";
 
@@ -16,8 +17,6 @@ export default function Home() {
     let res = await axios.get(`https://api.github.com/users/${searchInput}`);
     setUser(res.data);
   };
-
-  console.log(user);
 
   return (
     <Fragment>
@@ -42,6 +41,12 @@ export default function Home() {
         >
           Search
         </Button>
+
+        <UserCard
+          key={user.id}
+          userName={user.login}
+          userImage={user.avatar_url}
+        />
       </div>
     </Fragment>
   );

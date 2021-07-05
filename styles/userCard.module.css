@@ -1,0 +1,10 @@
+.card {
+  margin-top: 10%;
+}
+
+.cardElements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
