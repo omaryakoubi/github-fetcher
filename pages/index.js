@@ -3,20 +3,22 @@ import { Fragment, useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import UserCard from "../components/UserCard";
 
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../redux/actions";
 
 import styles from "../styles/index.module.css";
 
 export default function Home() {
-  const [searchInput, setSearchInput] = useState("");
-  const [user, setUser] = useState([]);
+  const dispatch = useDispatch();
 
+  const [searchInput, setSearchInput] = useState("");
   const handleChange = (e) => setSearchInput(e.target.value);
 
   const handleClick = async () => {
-    let res = await axios.get(`https://api.github.com/users/${searchInput}`);
-    setUser(res.data);
+    dispatch(await getUser(searchInput));
   };
+
+  const user = useSelector((state) => state.userReducer.user);
 
   return (
     <Fragment>
