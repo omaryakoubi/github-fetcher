@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_USER } from "../types";
+import { GET_USER } from "./types";
 
 export const getUser = (payload) => async (dispatch) => {
   try {
