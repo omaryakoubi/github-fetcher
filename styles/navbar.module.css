@@ -1,0 +1,17 @@
+.navbar {
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    margin: auto auto;
+  }
+}

@@ -1,7 +1,9 @@
 import Head from "next/head";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
+
 import UserCard from "../components/UserCard";
+import NotFound from "../components/NotFound";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../redux/actions";
@@ -18,7 +20,15 @@ export default function Home() {
     dispatch(await getUser(searchInput));
   };
 
+  const handleEnterKeyPress = async (e) => {
+    if (e.key === "Enter") await handleClick();
+  };
+
   const user = useSelector((state) => state.userReducer.user);
+
+  // useEffect(() => {
+  //   var { status, id, login, avatar_url } = user;
+  // }, [user]);
 
   return (
     <Fragment>
@@ -34,6 +44,7 @@ export default function Home() {
             placeholder="Enter username here"
             value={searchInput}
             onChange={handleChange}
+            onKeyPress={handleEnterKeyPress}
           />
         </InputGroup>
         <Button
@@ -44,11 +55,11 @@ export default function Home() {
           Search
         </Button>
 
-        <UserCard
-          key={user.id}
-          userName={user.login}
-          userImage={user.avatar_url}
-        />
+        {status === 200 ? (
+          <UserCard key={id} userName={login} userImage={avatar_url} />
+        ) : user.name === "Error" ? (
+          <NotFound />
+        ) : null}
       </div>
     </Fragment>
   );

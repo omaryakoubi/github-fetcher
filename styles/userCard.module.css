@@ -4,7 +4,12 @@
 
 .cardElements {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.cardElements > * {
+  margin-top: 3%;
 }
