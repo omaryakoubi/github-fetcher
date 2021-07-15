@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Provider } from "react-redux";
 import { createWrapper } from "next-redux-wrapper";
-import store from "../redux";
+import store from "../store";
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,15 +1,15 @@
 import axios from "axios";
 import { GET_USER } from "./types";
 
-export const getUser = (payload) => async (dispatch) => {
+export const getUser = async (payload) => {
   try {
     const user = await axios.get(`https://api.github.com/users/${payload}`);
-    dispatch({
+    return {
       type: GET_USER,
       payload: { status: user.status, data: user.data },
-    });
+    };
   } catch (error) {
-    dispatch({ type: GET_USER, payload: error });
     console.log(error);
+    return { type: GET_USER, error };
   }
 };

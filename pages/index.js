@@ -6,7 +6,7 @@ import UserCard from "../components/UserCard";
 import NotFound from "../components/NotFound";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../redux/actions";
+import { getUser } from "../store/actions";
 
 import styles from "../styles/index.module.css";
 
@@ -25,10 +25,6 @@ export default function Home() {
   };
 
   const user = useSelector((state) => state.userReducer.user);
-
-  // useEffect(() => {
-  //   var { status, id, login, avatar_url } = user;
-  // }, [user]);
 
   return (
     <Fragment>
@@ -55,9 +51,9 @@ export default function Home() {
           Search
         </Button>
 
-        {status === 200 ? (
-          <UserCard key={id} userName={login} userImage={avatar_url} />
-        ) : user.name === "Error" ? (
+        {user.status === 200 ? (
+          <UserCard userName={user.data.login} userImage={user.data.avatar_url} />
+        ) : name === "Error" ? (
           <NotFound />
         ) : null}
       </div>
