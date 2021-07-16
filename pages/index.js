@@ -57,11 +57,7 @@ export default function Home() {
         {user.name === "Error" ? (
           <NotFound />
         ) : user.status === 200 ? (
-          <UserCard
-            userName={user.data.login}
-            profileName={user.data.name}
-            userImage={user.data.avatar_url}
-          />
+          <UserCard />
         ) : null}
       </div>
     </Fragment>
