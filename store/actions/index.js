@@ -9,7 +9,7 @@ export const getUser = async (payload) => {
       payload: { status: user.status, data: user.data },
     };
   } catch (error) {
-    console.log(error);
-    return { type: GET_USER, error };
+    console.error(error);
+    return { type: GET_USER, payload: error };
   }
 };
