@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
-
-import UserCard from "../components/UserCard";
-import NotFound from "../components/NotFound";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../store/actions";
+
+import UserCard from "../components/UserCard";
+import NotFound from "../components/NotFound";
 
 import styles from "../styles/index.module.css";
 
@@ -59,6 +59,7 @@ export default function Home() {
         ) : user.status === 200 ? (
           <UserCard
             userName={user.data.login}
+            profileName={user.data.name}
             userImage={user.data.avatar_url}
           />
         ) : null}
